@@ -36,3 +36,4 @@ javadoc/
 tessdata/
 **/.externalNativeBuild/
 **/.cxx/
+**/.idea/
