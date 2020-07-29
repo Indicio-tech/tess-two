@@ -3,4 +3,4 @@
 	url = https://github.com/alexcohn/leptonica
 [submodule "tesseract"]
 	path = tesseract
-	url = https://github.com/alexcohn/tesseract
+	url = ../tesseract
