@@ -1,3 +1,6 @@
+## gregko fork
+A fork of alexcohn/tess-two, updated to Tesseract 4.1.1 release. The rest of this file is the original README.md from alexcohn repo.
+
 # tess-two
 
 A fork of Tesseract Tools for Android 
