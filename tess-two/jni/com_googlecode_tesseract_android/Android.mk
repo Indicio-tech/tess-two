@@ -47,6 +47,7 @@ BLACKLIST_SRC_FILES := \
     %sse.cpp \
     %avx2.cpp \
     %avx.cpp \
+    arch/dotproductfma.cpp \
 
 LOCAL_SRC_FILES := \
   $(filter-out $(BLACKLIST_SRC_FILES),$(subst $(LOCAL_PATH)/,,$(TESSERACT_SRC_FILES)))
@@ -90,7 +91,7 @@ LOCAL_THIN_ARCHIVE := true
 
 BLACKLIST_SRC_FILES := \
   %api/tesseractmain.cpp \
-  %viewer/svpaint.cpp
+  %viewer/svpaint.cpp \
 
 TESSERACT_SRC_FILES := \
   $(wildcard $(TESSERACT_PATH)/api/*.cpp) \

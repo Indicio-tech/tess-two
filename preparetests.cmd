@@ -18,4 +18,7 @@ adb push -p tessdata/eng.cube.size %DIR%/tessdata
 adb push -p tessdata/eng.cube.word-freq %DIR%/tessdata
 adb push -p tessdata/eng.tesseract_cube.nn %DIR%/tessdata
 adb push -p tessdata/eng.traineddata %DIR%/tessdata
-adb push -p tess-two/jni/com_googlecode_tesseract_android/src/tessdata/pdf.ttf %DIR%/tessdata
+adb push -p tesseract/tessdata/pdf.ttf %DIR%/tessdata
+
+echo When running tests,
+echo don't forget to grant Storage permission to tesseract-android-tools-test apps!

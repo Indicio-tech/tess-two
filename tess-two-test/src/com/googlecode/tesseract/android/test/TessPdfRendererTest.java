@@ -23,6 +23,7 @@ import junit.framework.TestCase;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -31,6 +32,7 @@ import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
 import android.test.suitebuilder.annotation.SmallTest;
 
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.GrantPermissionRule;
 
 import com.googlecode.leptonica.android.Pix;
@@ -44,7 +46,7 @@ import org.junit.Rule;
 public class TessPdfRendererTest extends TestCase {
 
     @SuppressLint("SdCardPath")
-    private final static String OUTPUT_PATH = "/sdcard/";
+    private static String mOutputPath; // = "/sdcard/";
 
     // Grant permission to use external storage
     @Rule
@@ -53,15 +55,18 @@ public class TessPdfRendererTest extends TestCase {
     @SmallTest
     public void testCreate() {
         // Attempt to initialize the API.
+        Context context = InstrumentationRegistry.getInstrumentation().getContext();
+        mOutputPath = context.getExternalFilesDir(null).toString() + "/";
+
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TessBaseAPITest.TESSBASE_PATH,
+        boolean success = baseApi.init(TessBaseAPITest.TESSDATA_PATH,
                 TessBaseAPITest.DEFAULT_LANGUAGE);
         assertTrue(success);
 
         String pdfBasename = "testCreate";
         
         // Attempt to create a TessPdfRenderer instance.
-        TessPdfRenderer pdfRenderer = new TessPdfRenderer(baseApi, OUTPUT_PATH
+        TessPdfRenderer pdfRenderer = new TessPdfRenderer(baseApi, mOutputPath
                 + pdfBasename);
 
         pdfRenderer.recycle();
@@ -72,14 +77,16 @@ public class TessPdfRendererTest extends TestCase {
     public void testAddPageToDocument() throws IOException {
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TessBaseAPITest.TESSBASE_PATH,
+        boolean success = baseApi.init(TessBaseAPITest.TESSDATA_PATH,
                 TessBaseAPITest.DEFAULT_LANGUAGE);
         assertTrue(success);
 
         String pdfBasename = "testAddPageToDocument";
+        Context context = InstrumentationRegistry.getInstrumentation().getContext();
+        mOutputPath = context.getExternalFilesDir(null).toString() + "/";
 
         // Attempt to create a TessPdfRenderer instance.
-        TessPdfRenderer pdfRenderer = new TessPdfRenderer(baseApi, OUTPUT_PATH
+        TessPdfRenderer pdfRenderer = new TessPdfRenderer(baseApi, mOutputPath
                 + pdfBasename);
 
         // Start the PDF writing process.
@@ -107,7 +114,7 @@ public class TessPdfRendererTest extends TestCase {
         assertTrue(endSuccess);
 
         // Ensure that a PDF file was created.
-        File pdf = new File(OUTPUT_PATH + pdfBasename + ".pdf");
+        File pdf = new File(mOutputPath + pdfBasename + ".pdf");
         assertTrue(pdf.isFile());
         assertTrue(pdf.length() > 0);
 

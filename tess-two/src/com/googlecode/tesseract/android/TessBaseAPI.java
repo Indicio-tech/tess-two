@@ -316,14 +316,19 @@ public class TessBaseAPI {
     public boolean init(String datapath, String language, @OcrEngineMode int ocrEngineMode) {
         if (datapath == null)
             throw new IllegalArgumentException("Data path must not be null!");
-        if (!datapath.endsWith(File.separator))
-            datapath += File.separator;
 
         File datapathFile = new File(datapath);
         if (!datapathFile.exists())
             throw new IllegalArgumentException("Data path does not exist!");
 
-        File tessdata = new File(datapath + "tessdata");
+        File tessdata;
+        if (!datapath.endsWith("/tessdata") && !datapath.endsWith("/tessdata/")) {
+            if (!datapath.endsWith(File.separator))
+                datapath += File.separator;
+            tessdata = new File(datapath + "tessdata");
+        }
+        else
+            tessdata = datapathFile;
         if (!tessdata.exists() || !tessdata.isDirectory())
             throw new IllegalArgumentException("Data path must contain subfolder tessdata!");
 

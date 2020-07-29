@@ -55,7 +55,7 @@ import java.util.concurrent.Semaphore;
 public class TessBaseAPITest extends TestCase {
     static final String TESSBASE_PATH = Environment.getExternalStorageDirectory().toString();
     static final String DEFAULT_LANGUAGE = "eng";
-    private static final String TESSDATA_PATH = TESSBASE_PATH + "/tessdata/";
+    static final String TESSDATA_PATH = TESSBASE_PATH + "/tessdata/";
     private static final String[] EXPECTED_CUBE_DATA_FILES_ENG = {
         "eng.cube.bigrams",
         "eng.cube.fold",
@@ -105,7 +105,7 @@ public class TessBaseAPITest extends TestCase {
 
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         baseApi.setPageSegMode(TessBaseAPI.PageSegMode.PSM_SINGLE_LINE);
@@ -192,7 +192,7 @@ public class TessBaseAPITest extends TestCase {
 
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         baseApi.setPageSegMode(TessBaseAPI.PageSegMode.PSM_SINGLE_LINE);
@@ -216,7 +216,7 @@ public class TessBaseAPITest extends TestCase {
 
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         baseApi.setPageSegMode(TessBaseAPI.PageSegMode.PSM_SINGLE_LINE);
@@ -234,7 +234,7 @@ public class TessBaseAPITest extends TestCase {
         }
 
         // Ensure that reinitializing the API is successful.
-        success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue("API failed to initialize after end()", success);
 
         // Ensure setImage() does not throw an exception.
@@ -266,12 +266,12 @@ public class TessBaseAPITest extends TestCase {
     }
 
     private void testGetHOCRText(String language, int ocrEngineMode) {
-        final String inputText = "hello";
+        final String inputText = "Hello, this is my OCR test. It better works well! OK?";
         final Bitmap bmp = getTextImage(inputText, 640, 480);
 
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, language, ocrEngineMode);
+        boolean success = baseApi.init(TESSDATA_PATH, language, ocrEngineMode);
         assertTrue(success);
 
         baseApi.setPageSegMode(TessBaseAPI.PageSegMode.PSM_SINGLE_LINE);
@@ -294,7 +294,7 @@ public class TessBaseAPITest extends TestCase {
     public void testGetInitLanguagesAsString() {
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         // Check the last-used language code.
@@ -309,7 +309,7 @@ public class TessBaseAPITest extends TestCase {
     public void testGetThresholdedImage() {
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         // Set the image to a Bitmap.
@@ -353,7 +353,7 @@ public class TessBaseAPITest extends TestCase {
 
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, language, ocrEngineMode);
+        boolean success = baseApi.init(TESSDATA_PATH, language, ocrEngineMode);
         assertTrue(success);
 
         baseApi.setPageSegMode(TessBaseAPI.PageSegMode.PSM_SINGLE_LINE);
@@ -423,7 +423,7 @@ public class TessBaseAPITest extends TestCase {
     public void testInit() {
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         // Attempt to shut down the API.
@@ -434,7 +434,7 @@ public class TessBaseAPITest extends TestCase {
     public void testInit_ocrEngineMode() {
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean result = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE,
+        boolean result = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE,
                 TessBaseAPI.OEM_TESSERACT_ONLY);
 
         assertTrue("Init was unsuccessful.", result);
@@ -463,7 +463,7 @@ public class TessBaseAPITest extends TestCase {
 
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI(notifier);
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         baseApi.setPageSegMode(TessBaseAPI.PageSegMode.PSM_SINGLE_LINE);
@@ -519,7 +519,7 @@ public class TessBaseAPITest extends TestCase {
 
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI(notifier);
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         baseApi.setPageSegMode(TessBaseAPI.PageSegMode.PSM_SINGLE_LINE);
@@ -575,14 +575,14 @@ public class TessBaseAPITest extends TestCase {
                 textRect.top + wordRect.top,
                 textRect.left + wordRect.right,
                 textRect.top + wordRect.bottom);
-        assertTrue(textRect.contains(absoluteWordRect));
+         assertTrue(absoluteWordRect.isEmpty() || textRect.contains(absoluteWordRect));
     }
 
     @SmallTest
     public void testSetImage_bitmap() {
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         // Set the image to a Bitmap.
@@ -598,7 +598,7 @@ public class TessBaseAPITest extends TestCase {
     public void testSetImage_file() throws IOException {
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         // Create an image file.
@@ -620,7 +620,7 @@ public class TessBaseAPITest extends TestCase {
     public void testSetImage_pix() throws IOException {
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         // Set the image to a Pix.
@@ -636,7 +636,7 @@ public class TessBaseAPITest extends TestCase {
     public void testSetPageSegMode() {
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         // Check the default page segmentation mode.
@@ -657,7 +657,7 @@ public class TessBaseAPITest extends TestCase {
     public void testSetRectangle() {
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         baseApi.setPageSegMode(TessBaseAPI.PageSegMode.PSM_SINGLE_CHAR);
@@ -709,7 +709,7 @@ public class TessBaseAPITest extends TestCase {
 
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         baseApi.setPageSegMode(TessBaseAPI.PageSegMode.PSM_SINGLE_LINE);
@@ -757,7 +757,7 @@ public class TessBaseAPITest extends TestCase {
             }
         }
 
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
         baseApi.setImage(bmp);
 
@@ -784,7 +784,7 @@ public class TessBaseAPITest extends TestCase {
 
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
-        boolean success = baseApi.init(TESSBASE_PATH, DEFAULT_LANGUAGE);
+        boolean success = baseApi.init(TESSDATA_PATH, DEFAULT_LANGUAGE);
         assertTrue(success);
 
         baseApi.setPageSegMode(TessBaseAPI.PageSegMode.PSM_SINGLE_BLOCK);
@@ -818,7 +818,7 @@ public class TessBaseAPITest extends TestCase {
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
 
-        String version = baseApi.getVersion();
+        String version = baseApi.getVersion(); // gets 4.1.0
         assertNotNull("Version returned null", version);
 
         // Attempt to shut down the API.
