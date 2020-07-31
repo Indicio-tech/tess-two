@@ -726,9 +726,9 @@ public class TessBaseAPI {
      * Gets the individual connected (text) components (created after pages 
      * segmentation step, but before recognition) as a Pixa, in reading order.
      * <p>
-     * Can be called before or after Recognize. Note: the caller is 
+     * Can be called before or after Recognize. Note: the caller is
+     *
      * responsible for calling recycle() on the returned Pixa.
-     * 
      * @return Pixa containing connected components bounding boxes 
      */
     public Pixa getConnectedComponents() {
@@ -755,6 +755,20 @@ public class TessBaseAPI {
         }
 
         return new ResultIterator(nativeResultIterator);
+    }
+
+    /**
+     * Optional: recognize text and other data on a page.
+     * Interruptible by {@link #stop()}.
+     *
+     * @return 0 on success, -1 on failure
+     */
+    @WorkerThread
+    public int recognize(){
+        if (mRecycled)
+            throw new IllegalStateException();
+
+        return nativeRecognize(mNativeData);
     }
 
     /**
@@ -993,6 +1007,8 @@ public class TessBaseAPI {
     private native long nativeGetResultIterator(long mNativeData);
 
     private native String nativeGetBoxText(long mNativeData, int page_number);
+
+    private native int nativeRecognize(long mNativeData);
 
     private native String nativeGetHOCRText(long mNativeData, int page_number);
 

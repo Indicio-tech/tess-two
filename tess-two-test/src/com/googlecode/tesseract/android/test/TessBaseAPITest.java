@@ -27,9 +27,11 @@ import android.graphics.Paint.Style;
 import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Environment;
-
 import android.text.Html;
 import android.util.Pair;
+
+import androidx.test.filters.SmallTest;
+import androidx.test.rule.GrantPermissionRule;
 
 import com.googlecode.leptonica.android.Pix;
 import com.googlecode.leptonica.android.Pixa;
@@ -40,9 +42,6 @@ import com.googlecode.tesseract.android.TessBaseAPI.ProgressNotifier;
 import com.googlecode.tesseract.android.TessBaseAPI.ProgressValues;
 
 import junit.framework.TestCase;
-
-import androidx.test.filters.SmallTest;
-import androidx.test.rule.GrantPermissionRule;
 
 import org.junit.Rule;
 
@@ -818,8 +817,9 @@ public class TessBaseAPITest extends TestCase {
         // Attempt to initialize the API.
         final TessBaseAPI baseApi = new TessBaseAPI();
 
-        String version = baseApi.getVersion(); // gets 4.1.0
+        String version = baseApi.getVersion(); // gets 4.1.1
         assertNotNull("Version returned null", version);
+        assertEquals("4.1.1", version);
 
         // Attempt to shut down the API.
         baseApi.end();
