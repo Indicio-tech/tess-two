@@ -538,6 +538,23 @@ jlong Java_com_googlecode_tesseract_android_TessBaseAPI_nativeGetResultIterator(
   return (jlong) nat->api.GetIterator();
 }
 
+jint Java_com_googlecode_tesseract_android_TessBaseAPI_nativeRecognize(JNIEnv *env,
+                                                                                jobject thiz,
+                                                                                jlong mNativeData) {
+  native_data_t *nat = (native_data_t*) mNativeData;
+  nat->initStateVariables(env, &thiz);
+
+  ETEXT_DESC monitor;
+  monitor.progress_callback2 = progressJavaCallback;
+  monitor.cancel = cancelFunc;
+  monitor.cancel_this = nat;
+
+  int result = nat->api.Recognize(&monitor);
+  nat->resetStateVariables();
+  return result;
+}
+
+
 jstring Java_com_googlecode_tesseract_android_TessBaseAPI_nativeGetHOCRText(JNIEnv *env,
                                                                             jobject thiz,
                                                                             jlong mNativeData,
