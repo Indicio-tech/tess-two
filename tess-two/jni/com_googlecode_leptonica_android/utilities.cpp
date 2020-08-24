@@ -27,7 +27,7 @@ extern "C" {
  * AdaptiveMap *
  ***************/
 
-jlong Java_com_googlecode_leptonica_android_AdaptiveMap_nativeBackgroundNormMorph(JNIEnv *env,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_AdaptiveMap_nativeBackgroundNormMorph(JNIEnv *env,
                                                                                   jclass clazz,
                                                                                   jlong nativePix,
                                                                                   jint reduction,
@@ -42,7 +42,7 @@ jlong Java_com_googlecode_leptonica_android_AdaptiveMap_nativeBackgroundNormMorp
   return jlong(pixd);
 }
 
-jlong Java_com_googlecode_leptonica_android_AdaptiveMap_nativePixContrastNorm(JNIEnv *env,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_AdaptiveMap_nativePixContrastNorm(JNIEnv *env,
                                                                               jclass clazz,
                                                                               jlong nativePix,
                                                                               jint sizeX,
@@ -62,7 +62,7 @@ jlong Java_com_googlecode_leptonica_android_AdaptiveMap_nativePixContrastNorm(JN
  * Binarize *
  ************/
 
-jlong Java_com_googlecode_leptonica_android_Binarize_nativeOtsuAdaptiveThreshold(JNIEnv *env,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_Binarize_nativeOtsuAdaptiveThreshold(JNIEnv *env,
                                                                                  jclass clazz,
                                                                                  jlong nativePix,
                                                                                  jint sizeX,
@@ -82,7 +82,7 @@ jlong Java_com_googlecode_leptonica_android_Binarize_nativeOtsuAdaptiveThreshold
   return jlong(pixd);
 }
 
-jlong Java_com_googlecode_leptonica_android_Binarize_nativeSauvolaBinarizeTiled(JNIEnv *env,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_Binarize_nativeSauvolaBinarizeTiled(JNIEnv *env,
                                                                                 jclass clazz,
                                                                                 jlong nativePix,
                                                                                 jint whsize,
@@ -105,7 +105,7 @@ jlong Java_com_googlecode_leptonica_android_Binarize_nativeSauvolaBinarizeTiled(
  * Clip *
  ********/
 
-jlong Java_com_googlecode_leptonica_android_Clip_nativeClipRectangle(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_Clip_nativeClipRectangle(JNIEnv *env, jclass clazz,
                                                                      jlong nativePix, jlong nativeBox) {
 
   PIX *pixs = (PIX *) nativePix;
@@ -119,7 +119,7 @@ jlong Java_com_googlecode_leptonica_android_Clip_nativeClipRectangle(JNIEnv *env
  * Convert *
  ***********/
 
-jlong Java_com_googlecode_leptonica_android_Convert_nativeConvertTo8(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_Convert_nativeConvertTo8(JNIEnv *env, jclass clazz,
                                                                      jlong nativePix) {
   PIX *pixs = (PIX *) nativePix;
   PIX *pixd = pixConvertTo8(pixs, FALSE);
@@ -131,7 +131,7 @@ jlong Java_com_googlecode_leptonica_android_Convert_nativeConvertTo8(JNIEnv *env
  * Edge *
  ********/
 
-jlong Java_com_googlecode_leptonica_android_Edge_nativePixSobelEdgeFilter(JNIEnv *env,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_Edge_nativePixSobelEdgeFilter(JNIEnv *env,
                                                                           jclass clazz,
                                                                           jlong nativePix,
                                                                           jint orientFlag) {
@@ -145,7 +145,7 @@ jlong Java_com_googlecode_leptonica_android_Edge_nativePixSobelEdgeFilter(JNIEnv
  * Enhance *
  ***********/
 
-jlong Java_com_googlecode_leptonica_android_Enhance_nativeUnsharpMasking(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_Enhance_nativeUnsharpMasking(JNIEnv *env, jclass clazz,
                                                                          jlong nativePix,
                                                                          jint halfwidth,
                                                                          jfloat fract) {
@@ -159,7 +159,7 @@ jlong Java_com_googlecode_leptonica_android_Enhance_nativeUnsharpMasking(JNIEnv 
  * GrayQuant *
  *************/
 
-jlong Java_com_googlecode_leptonica_android_GrayQuant_nativePixThresholdToBinary(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_GrayQuant_nativePixThresholdToBinary(JNIEnv *env, jclass clazz,
                                                                                  jlong nativePix, jint thresh) {
   PIX *pixs = (PIX *) nativePix;
   PIX *pixd = pixThresholdToBinary(pixs, (l_int32) thresh);
@@ -171,7 +171,7 @@ jlong Java_com_googlecode_leptonica_android_GrayQuant_nativePixThresholdToBinary
  * JpegIO *
  **********/
 
-jbyteArray Java_com_googlecode_leptonica_android_JpegIO_nativeCompressToJpeg(JNIEnv *env,
+JNIEXPORT jbyteArray Java_com_googlecode_leptonica_android_JpegIO_nativeCompressToJpeg(JNIEnv *env,
                                                                              jclass clazz,
                                                                              jlong nativePix,
                                                                              jint quality,
@@ -200,7 +200,7 @@ jbyteArray Java_com_googlecode_leptonica_android_JpegIO_nativeCompressToJpeg(JNI
  * MorphApp *
  ************/
 
-jlong Java_com_googlecode_leptonica_android_MorphApp_nativePixTophat(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_MorphApp_nativePixTophat(JNIEnv *env, jclass clazz,
                                                                      jlong nativePix, jint hsize,
                                                                      jint vsize, jint type) {
   PIX *pixs = (PIX *) nativePix;
@@ -209,7 +209,7 @@ jlong Java_com_googlecode_leptonica_android_MorphApp_nativePixTophat(JNIEnv *env
   return jlong(pixd);
 }
 
-jlong Java_com_googlecode_leptonica_android_MorphApp_nativePixFastTophat(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_MorphApp_nativePixFastTophat(JNIEnv *env, jclass clazz,
                                                                          jlong nativePix, jint xsize,
                                                                          jint ysize, jint type) {
   PIX *pixs = (PIX *) nativePix;
@@ -222,14 +222,14 @@ jlong Java_com_googlecode_leptonica_android_MorphApp_nativePixFastTophat(JNIEnv 
  * Scale *
  *********/
 
-jlong Java_com_googlecode_leptonica_android_Scale_nativeScaleGeneral(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_Scale_nativeScaleGeneral(JNIEnv *env, jclass clazz,
                                                                      jlong nativePix, jfloat scaleX,
                                                                      jfloat scaleY, jfloat sharpfract, jint sharpwidth) {
   PIX *pixs = (Pix *) nativePix;
   return (jlong) pixScaleGeneral(pixs, (l_float32) scaleX, (l_float32) scaleY,(l_float32) sharpfract, (l_int32) sharpwidth);
 }
 
-jlong Java_com_googlecode_leptonica_android_Scale_nativeScale(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_Scale_nativeScale(JNIEnv *env, jclass clazz,
                                                               jlong nativePix, jfloat scaleX,
                                                               jfloat scaleY) {
   PIX *pixs = (Pix *) nativePix;
@@ -242,7 +242,7 @@ jlong Java_com_googlecode_leptonica_android_Scale_nativeScale(JNIEnv *env, jclas
  * Skew *
  ********/
 
-jfloat Java_com_googlecode_leptonica_android_Skew_nativeFindSkew(JNIEnv *env, jclass clazz,
+JNIEXPORT jfloat Java_com_googlecode_leptonica_android_Skew_nativeFindSkew(JNIEnv *env, jclass clazz,
                                                                  jlong nativePix, jfloat sweepRange,
                                                                  jfloat sweepDelta,
                                                                  jint sweepReduction,
@@ -269,7 +269,7 @@ jfloat Java_com_googlecode_leptonica_android_Skew_nativeFindSkew(JNIEnv *env, jc
  * Rotate *
  **********/
 
-jlong Java_com_googlecode_leptonica_android_Rotate_nativeRotate(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_Rotate_nativeRotate(JNIEnv *env, jclass clazz,
                                                                 jlong nativePix, jfloat degrees,
                                                                 jboolean quality, jboolean resize) {
   PIX *pixd;
@@ -293,7 +293,7 @@ jlong Java_com_googlecode_leptonica_android_Rotate_nativeRotate(JNIEnv *env, jcl
   return jlong(pixd);
 }
 
-jlong Java_com_googlecode_leptonica_android_Rotate_nativeRotateOrth(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_Rotate_nativeRotateOrth(JNIEnv *env, jclass clazz,
                                                                     jlong nativePix, jint quads) {
 
   PIX *pixs = (PIX *) nativePix;

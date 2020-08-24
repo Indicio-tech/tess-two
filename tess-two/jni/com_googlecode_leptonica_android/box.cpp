@@ -20,47 +20,47 @@
 extern "C" {
 #endif  /* __cplusplus */
 
-jlong Java_com_googlecode_leptonica_android_Box_nativeCreate(JNIEnv *env, jclass clazz, jint x,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_Box_nativeCreate(JNIEnv *env, jclass clazz, jint x,
                                                              jint y, jint w, jint h) {
   BOX *box = boxCreate((l_int32) x, (l_int32) y, (l_int32) w, (l_int32) h);
 
   return (jlong) box;
 }
 
-void Java_com_googlecode_leptonica_android_Box_nativeDestroy(JNIEnv *env, jclass clazz,
+JNIEXPORT void Java_com_googlecode_leptonica_android_Box_nativeDestroy(JNIEnv *env, jclass clazz,
                                                              jlong nativeBox) {
   BOX *box = (BOX *) nativeBox;
 
   boxDestroy(&box);
 }
 
-jint Java_com_googlecode_leptonica_android_Box_nativeGetX(JNIEnv *env, jclass clazz, jlong nativeBox) {
+JNIEXPORT jint Java_com_googlecode_leptonica_android_Box_nativeGetX(JNIEnv *env, jclass clazz, jlong nativeBox) {
   BOX *box = (BOX *) nativeBox;
 
   return (jint) box->x;
 }
 
-jint Java_com_googlecode_leptonica_android_Box_nativeGetY(JNIEnv *env, jclass clazz, jlong nativeBox) {
+JNIEXPORT jint Java_com_googlecode_leptonica_android_Box_nativeGetY(JNIEnv *env, jclass clazz, jlong nativeBox) {
   BOX *box = (BOX *) nativeBox;
 
   return (jint) box->y;
 }
 
-jint Java_com_googlecode_leptonica_android_Box_nativeGetWidth(JNIEnv *env, jclass clazz,
+JNIEXPORT jint Java_com_googlecode_leptonica_android_Box_nativeGetWidth(JNIEnv *env, jclass clazz,
                                                               jlong nativeBox) {
   BOX *box = (BOX *) nativeBox;
 
   return (jint) box->w;
 }
 
-jint Java_com_googlecode_leptonica_android_Box_nativeGetHeight(JNIEnv *env, jclass clazz,
+JNIEXPORT jint Java_com_googlecode_leptonica_android_Box_nativeGetHeight(JNIEnv *env, jclass clazz,
                                                                jlong nativeBox) {
   BOX *box = (BOX *) nativeBox;
 
   return (jint) box->h;
 }
 
-jboolean Java_com_googlecode_leptonica_android_Box_nativeGetGeometry(JNIEnv *env, jclass clazz,
+JNIEXPORT jboolean Java_com_googlecode_leptonica_android_Box_nativeGetGeometry(JNIEnv *env, jclass clazz,
                                                                      jlong nativeBox,
                                                                      jintArray dimensions) {
   BOX *box = (BOX *) nativeBox;

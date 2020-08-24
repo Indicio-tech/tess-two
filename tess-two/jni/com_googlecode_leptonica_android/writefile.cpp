@@ -27,7 +27,7 @@ extern "C" {
  * WriteFile *
  *************/
 
-jint Java_com_googlecode_leptonica_android_WriteFile_nativeWriteBytes8(JNIEnv *env, jclass clazz,
+JNIEXPORT jint Java_com_googlecode_leptonica_android_WriteFile_nativeWriteBytes8(JNIEnv *env, jclass clazz,
                                                                        jlong nativePix,
                                                                        jbyteArray data) {
   l_int32 w, h, d;
@@ -48,7 +48,7 @@ jint Java_com_googlecode_leptonica_android_WriteFile_nativeWriteBytes8(JNIEnv *e
   return (jint)(w * h);
 }
 
-jboolean Java_com_googlecode_leptonica_android_WriteFile_nativeWriteImpliedFormat(JNIEnv *env,
+JNIEXPORT jboolean Java_com_googlecode_leptonica_android_WriteFile_nativeWriteImpliedFormat(JNIEnv *env,
                                                                                   jclass clazz,
                                                                                   jlong nativePix,
                                                                                   jstring fileName) {
@@ -72,7 +72,7 @@ jboolean Java_com_googlecode_leptonica_android_WriteFile_nativeWriteImpliedForma
   return result;
 }
 
-jboolean Java_com_googlecode_leptonica_android_WriteFile_nativeWriteBitmap(JNIEnv *env,
+JNIEXPORT jboolean Java_com_googlecode_leptonica_android_WriteFile_nativeWriteBitmap(JNIEnv *env,
                                                                            jclass clazz,
                                                                            jlong nativePix,
                                                                            jobject bitmap) {

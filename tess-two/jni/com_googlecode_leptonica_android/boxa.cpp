@@ -20,13 +20,13 @@
 extern "C" {
 #endif  /* __cplusplus */
 
-void Java_com_googlecode_leptonica_android_Boxa_nativeDestroy(JNIEnv *env, jclass clazz, jlong nativeBoxa) {
+JNIEXPORT void Java_com_googlecode_leptonica_android_Boxa_nativeDestroy(JNIEnv *env, jclass clazz, jlong nativeBoxa) {
   BOXA *boxa = (BOXA *) nativeBoxa;
   boxaDestroy(&boxa);
 }
 
 
-jboolean Java_com_googlecode_leptonica_android_Boxa_nativeGetGeometry(JNIEnv *env, jclass clazz,
+JNIEXPORT jboolean Java_com_googlecode_leptonica_android_Boxa_nativeGetGeometry(JNIEnv *env, jclass clazz,
                                                                      jlong nativeBoxa,
                                                                      jint index,
                                                                      jintArray dimensions) {

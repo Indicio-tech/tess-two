@@ -16,14 +16,14 @@
 
 #include "common.h"
 
-jint JNI_OnLoad(JavaVM* vm, void* reserved) {
-  JNIEnv *env;
-
-  if (vm->GetEnv((void**) &env, JNI_VERSION_1_6) != JNI_OK) {
-      LOGE("ERROR: GetEnv failed\n");
-      return -1;
-  }
-  assert(env != NULL);
-
-  return JNI_VERSION_1_6;
-}
+//JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
+//  JNIEnv *env;
+//
+//  if (vm->GetEnv((void**) &env, JNI_VERSION_1_6) != JNI_OK) {
+//      LOGE("ERROR: GetEnv failed\n");
+//      return -1;
+//  }
+//  assert(env != NULL);
+//
+//  return JNI_VERSION_1_6;
+//}

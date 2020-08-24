@@ -31,7 +31,7 @@ extern "C" {
  * ReadFile *
  ************/
 
-jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadMem(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadMem(JNIEnv *env, jclass clazz,
                                                                    jbyteArray image, jint length) {
     jbyte *image_buffer = env->GetByteArrayElements(image, NULL);
     int buffer_length = env->GetArrayLength(image);
@@ -43,7 +43,7 @@ jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadMem(JNIEnv *env, 
     return (jlong) pix;
 }
 
-jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadBytes8(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadBytes8(JNIEnv *env, jclass clazz,
                                                                       jbyteArray data, jint w,
                                                                       jint h) {
     PIX *pix = pixCreateNoInit((l_int32) w, (l_int32) h, 8);
@@ -67,7 +67,7 @@ jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadBytes8(JNIEnv *en
     return (jlong) pix;
 }
 
-jboolean Java_com_googlecode_leptonica_android_ReadFile_nativeReplaceBytes8(JNIEnv *env,
+JNIEXPORT jboolean Java_com_googlecode_leptonica_android_ReadFile_nativeReplaceBytes8(JNIEnv *env,
                                                                             jclass clazz,
                                                                             jlong nativePix,
                                                                             jbyteArray data,
@@ -97,7 +97,7 @@ jboolean Java_com_googlecode_leptonica_android_ReadFile_nativeReplaceBytes8(JNIE
     return JNI_TRUE;
 }
 
-jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadFiles(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadFiles(JNIEnv *env, jclass clazz,
                                                                      jstring dirName, jstring prefix) {
     PIXA *pixad = NULL;
 
@@ -121,7 +121,7 @@ jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadFiles(JNIEnv *env
     return (jlong) pixad;
 }
 
-jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadFile(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadFile(JNIEnv *env, jclass clazz,
                                                                     jstring fileName) {
     PIX *pixd = NULL;
 
@@ -138,7 +138,7 @@ jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadFile(JNIEnv *env,
     return (jlong) pixd;
 }
 
-jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadBitmap(JNIEnv *env, jclass clazz,
+JNIEXPORT jlong Java_com_googlecode_leptonica_android_ReadFile_nativeReadBitmap(JNIEnv *env, jclass clazz,
                                                                       jobject bitmap) {
     LOGV(__FUNCTION__);
 

@@ -43,6 +43,8 @@ LOCAL_EXPORT_CFLAGS := \
 LOCAL_CFLAGS := \
   $(LOCAL_EXPORT_CFLAGS) \
   -include $(LOCAL_PATH)/common.h
+LOCAL_CFLAGS += -ffunction-sections -fdata-sections -fvisibility=hidden
+LOCAL_CPPFLAGS += -ffunction-sections -fdata-sections -fvisibility=hidden
 
 LOCAL_EXPORT_C_INCLUDES := \
   $(LOCAL_PATH) \

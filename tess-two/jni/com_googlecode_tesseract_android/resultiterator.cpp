@@ -27,7 +27,7 @@ using namespace tesseract;
 extern "C" {
 #endif  /* __cplusplus */
 
-jstring Java_com_googlecode_tesseract_android_ResultIterator_nativeGetUTF8Text(JNIEnv *env,
+JNIEXPORT jstring Java_com_googlecode_tesseract_android_ResultIterator_nativeGetUTF8Text(JNIEnv *env,
     jclass clazz, jlong nativeResultIterator, jint level) {
   ResultIterator *resultIterator = (ResultIterator *) nativeResultIterator;
   PageIteratorLevel enumLevel = (PageIteratorLevel) level;
@@ -40,7 +40,7 @@ jstring Java_com_googlecode_tesseract_android_ResultIterator_nativeGetUTF8Text(J
   return result;
 }
 
-jfloat Java_com_googlecode_tesseract_android_ResultIterator_nativeConfidence(JNIEnv *env,
+JNIEXPORT jfloat Java_com_googlecode_tesseract_android_ResultIterator_nativeConfidence(JNIEnv *env,
     jclass clazz, jlong nativeResultIterator, jint level) {
   ResultIterator *resultIterator = (ResultIterator *) nativeResultIterator;
   PageIteratorLevel enumLevel = (PageIteratorLevel) level;
@@ -48,7 +48,7 @@ jfloat Java_com_googlecode_tesseract_android_ResultIterator_nativeConfidence(JNI
   return (jfloat) resultIterator->Confidence(enumLevel);
 }
 
-jobjectArray Java_com_googlecode_tesseract_android_ResultIterator_nativeGetSymbolChoices(JNIEnv *env,
+JNIEXPORT jobjectArray Java_com_googlecode_tesseract_android_ResultIterator_nativeGetSymbolChoices(JNIEnv *env,
     jclass clazz, jlong nativeResultIterator) {
 
   // Get the actual result iterator (as C object)
@@ -84,7 +84,7 @@ jobjectArray Java_com_googlecode_tesseract_android_ResultIterator_nativeGetSymbo
   return ret;
 }
 
-jboolean Java_com_googlecode_tesseract_android_ResultIterator_nativeIsAtBeginningOf(JNIEnv *env,
+JNIEXPORT jboolean Java_com_googlecode_tesseract_android_ResultIterator_nativeIsAtBeginningOf(JNIEnv *env,
     jclass clazz, jlong nativeResultIterator, jint level) {
   ResultIterator *resultIterator = (ResultIterator *) nativeResultIterator;
   PageIteratorLevel enumLevel = (PageIteratorLevel) level;
@@ -92,7 +92,7 @@ jboolean Java_com_googlecode_tesseract_android_ResultIterator_nativeIsAtBeginnin
   return (jboolean) (resultIterator->IsAtBeginningOf(enumLevel) ? JNI_TRUE : JNI_FALSE);
 }
 
-jboolean Java_com_googlecode_tesseract_android_ResultIterator_nativeIsAtFinalElement(JNIEnv *env,
+JNIEXPORT jboolean Java_com_googlecode_tesseract_android_ResultIterator_nativeIsAtFinalElement(JNIEnv *env,
     jclass clazz, jlong nativeResultIterator, jint level, jint element) {
   ResultIterator *resultIterator = (ResultIterator *) nativeResultIterator;
   PageIteratorLevel enumLevel = (PageIteratorLevel) level;
@@ -101,7 +101,7 @@ jboolean Java_com_googlecode_tesseract_android_ResultIterator_nativeIsAtFinalEle
   return (jboolean) (resultIterator->IsAtFinalElement(enumLevel, enumElement) ? JNI_TRUE : JNI_FALSE);
 }
 
-void Java_com_googlecode_tesseract_android_ResultIterator_nativeDelete(JNIEnv *env, jclass clazz,
+JNIEXPORT void Java_com_googlecode_tesseract_android_ResultIterator_nativeDelete(JNIEnv *env, jclass clazz,
     jlong nativeResultIterator) {
   ResultIterator *resultIterator = (ResultIterator *) nativeResultIterator;
   if (resultIterator != 0) {
